@@ -40,7 +40,7 @@ public class BusService {
         bus.setBusNumber(busDetails.getBusNumber());
         bus.setRoute(busDetails.getRoute());
         bus.setCapacity(busDetails.getCapacity());
-        bus.setDriverName(busDetails.getDriverName());
+        bus.setDriver(busDetails.getDriver());
         return busRepository.save(bus);
     }
 
@@ -78,4 +78,3 @@ public class BusService {
         PageRequest pageable=PageRequest.of(page,size);
         return busRepository.findAll(pageable);} // pagination
 }
-

@@ -2,6 +2,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.User;
+
+import jakarta.validation.ConstraintViolationException;
+
 import com.example.demo.Service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,5 +83,10 @@ public class UserController {
     {
         return userService.findUserByUsername(Username);
     }
-    
+
+  //VALIDATION
+  @ExceptionHandler(ConstraintViolationException.class)
+  public String handleValidationException(ConstraintViolationException ex) {
+      return "Validation Error: " + ex.getMessage();
+  }
 }

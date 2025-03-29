@@ -81,4 +81,3 @@ public List<Driver> getExpiringLicenses(LocalDate expiryDate) {
     return driverRepository.findDriversWithExpiringLicenses(expiryDate);
 }
 }
-

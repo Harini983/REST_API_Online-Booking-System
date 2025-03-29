@@ -1,25 +1,31 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.*;
 
 @Entity
 public class Bus {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+   
     private Long id;
     private String busNumber;
     private String route;
     private int capacity;
-    private String driverName;
+   
+
+    @OneToOne(mappedBy = "assignedBus")
+   @JsonIgnoreProperties("assignedBus")
+    private Driver driver;
 
     // Constructors
     public Bus() {}
 
-    public Bus(String busNumber, String route, int capacity, String driverName) {
-        this.busNumber = busNumber;
-        this.route = route;
-        this.capacity = capacity;
-        this.driverName = driverName;
+    public Bus(String busNumber, String route, int capacity, Driver driver) {
+            this.busNumber = busNumber;
+            this.route = route;
+            this.capacity = capacity;
+            this.driver = driver;
     }
 
     // Getters and Setters
@@ -55,11 +61,13 @@ public class Bus {
         this.capacity = capacity;
     }
 
-    public String getDriverName() {
-        return driverName;
+    public Driver getDriver() {
+        return driver;
     }
 
-    public void setDriverName(String driverName) {
-        this.driverName = driverName;
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
+
+    
 }

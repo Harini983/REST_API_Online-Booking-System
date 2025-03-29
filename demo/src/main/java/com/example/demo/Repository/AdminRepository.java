@@ -2,6 +2,7 @@ package com.example.demo.Repository;
 
 import java.util.List;
 
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -17,6 +18,6 @@ public interface AdminRepository extends JpaRepository<Admin, Long> {
 
     //jpql
     @Query("SELECT a FROM Admin a WHERE a.email = :email")
-Admin findByEmail(@Param("email") String email);
+com.example.demo.entity.Admin findByEmail(@Param("email") String email);
 
 }

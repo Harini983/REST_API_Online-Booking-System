@@ -95,4 +95,3 @@ public class BookingController {
         return bookingService.getsorted(name);
     }//http://localhost:8081/api/bookings/sort/seatNumber
 }
-

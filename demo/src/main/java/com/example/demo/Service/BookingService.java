@@ -1,6 +1,7 @@
 package com.example.demo.Service;
 
 import com.example.demo.entity.Booking;
+import com.example.demo.entity.User;
 import com.example.demo.Repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -17,6 +18,7 @@ public class BookingService {
 
     @Autowired
     private BookingRepository bookingRepository;
+    private User user;
 
     // Create a new booking
     public Booking createBooking(Booking booking) {
@@ -36,7 +38,7 @@ public class BookingService {
     // Update an existing booking
     public Booking updateBooking(Long id, Booking bookingDetails) {
         return bookingRepository.findById(id).map(booking -> {
-            booking.setUserId(bookingDetails.getUserId());
+            booking.setUser(user); 
             booking.setBusId(bookingDetails.getBusId());
             booking.setSeatNumber(bookingDetails.getSeatNumber());
             booking.setBookingDate(bookingDetails.getBookingDate());

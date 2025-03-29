@@ -3,6 +3,8 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Driver {
 
@@ -14,11 +16,15 @@ public class Driver {
     private String phone;
     private String email;
     private LocalDate licenseExpiryDate;
-    private String assignedBus; 
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "bus_id", nullable = false, unique = true)
+   @JsonIgnoreProperties("driver")
+    private Bus assignedBus; 
     
     public Driver() {}
 
-    public Driver(String name, String licenseNumber, String phone, String email, LocalDate licenseExpiryDate, String assignedBus) {
+    public Driver(String name, String licenseNumber, String phone, String email, LocalDate licenseExpiryDate, Bus assignedBus) {
         this.name = name;
         this.licenseNumber = licenseNumber;
         this.phone = phone;
@@ -46,6 +52,6 @@ public class Driver {
     public LocalDate getLicenseExpiryDate() { return licenseExpiryDate; }
     public void setLicenseExpiryDate(LocalDate licenseExpiryDate) { this.licenseExpiryDate = licenseExpiryDate; }
 
-    public String getAssignedBus() { return assignedBus; }
-    public void setAssignedBus(String assignedBus) { this.assignedBus = assignedBus; }
+    public Bus getAssignedBus() { return assignedBus; }
+    public void setAssignedBus(Bus assignedBus) { this.assignedBus = assignedBus; }
 }
